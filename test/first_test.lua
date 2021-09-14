@@ -1,9 +1,11 @@
-local t = require'luatest'
-local fio = require'fio'
-local bus = require'bus'
-local netbox = require'net.box'
-
+local t = require('luatest')
+local h = require('test.helper')
 local g = t.group()
+
+local fio = require('fio')
+local bus = require('bus')
+local netbox = require('net.box')
+
 
 g.before_all(function()
     local tempdir = fio.tempdir()

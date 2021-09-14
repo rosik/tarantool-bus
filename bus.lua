@@ -30,6 +30,11 @@ local function sub_loop(sub)
 end
 
 local function subscribe(conn, key, callback, opts)
+    -- local auto_renew = opts and opts.auto_renew
+    -- if auto_renew == nil then
+    --     auto_renew = true
+    -- end
+
     local ret, err = conn:call('srv_subscribe', {key}, opts)
 
     if ret == nil then
@@ -42,6 +47,7 @@ local function subscribe(conn, key, callback, opts)
         value = ret.value,
         version = ret.version,
         callback = callback,
+        -- auto_renew = auto_renew,
         __ctl = fiber.channel(1),
     }, sub_mt)
 
